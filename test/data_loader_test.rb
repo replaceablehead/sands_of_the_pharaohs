@@ -1,10 +1,21 @@
 require 'minitest/autorun'
 require_relative '../data_loader' # load the data loader file for testing
 
-# test tries to create a new data loader and checks if it was created
 class DataLoaderTest < Minitest::Test
-  def test_data_loader_initializes
-    data_loader = DataLoader.new
-    assert_instance_of DataLoader, data_loader
+  def setup
+    @data = JSON.parse(File.read('maps/level1.tmj'))
+  end
+
+  # test the the npc_spawn layer can be found
+  def test_finds_npc_spawn_layer
+    npc_layer = DataLoader.find_layer(@data, 'npc_spawn')
+    refute_nil npc_layer
+  end
+
+  # test data loader finds the rat. convert the coordinates to a tile location.
+  def test_rat_spawn_tile_coordinates
+    rat = DataLoader.find_object(@data, 'npc_spawn', 'rat')
+    assert_equal 4, (rat['x'] / 32).floor
+    assert_equal 1, (rat['y'] / 32).floor
   end
 end
