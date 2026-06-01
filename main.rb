@@ -36,7 +36,7 @@ class Game < Gosu::Window
       elsif @map.detect_collision(@player.x + 1, @player.y)
         @player.move_right
       end
-      @npcs.each { |npc| npc.move_toward(@player.x, @player.y) }
+      @npcs.each { |npc| npc.move_toward(@player.x, @player.y, @map) }
     elsif id == Gosu::KB_LEFT
       npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x - 1, @player.y)
       if npc
@@ -45,7 +45,7 @@ class Game < Gosu::Window
       elsif @map.detect_collision(@player.x - 1, @player.y)
         @player.move_left
       end
-      @npcs.each { |npc| npc.move_toward(@player.x, @player.y) }
+      @npcs.each { |npc| npc.move_toward(@player.x, @player.y, @map) }
     elsif id == Gosu::KB_UP
       npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x, @player.y - 1)
       if npc
@@ -54,7 +54,7 @@ class Game < Gosu::Window
       elsif @map.detect_collision(@player.x, @player.y - 1)
         @player.move_up
       end
-      @npcs.each { |npc| npc.move_toward(@player.x, @player.y) }
+      @npcs.each { |npc| npc.move_toward(@player.x, @player.y, @map) }
     elsif id == Gosu::KB_DOWN
       npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x, @player.y + 1)
       if npc
@@ -63,7 +63,7 @@ class Game < Gosu::Window
       elsif @map.detect_collision(@player.x, @player.y + 1)
         @player.move_down
       end
-      @npcs.each { |npc| npc.move_toward(@player.x, @player.y) }
+      @npcs.each { |npc| npc.move_toward(@player.x, @player.y, @map) }
     elsif id == Gosu::KB_ESCAPE
       close
     end

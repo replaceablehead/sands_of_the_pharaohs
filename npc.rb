@@ -8,21 +8,28 @@ class Npc
     @image.draw(@x * TILE_SIZE, @y * TILE_SIZE, 1)
   end
 
-  # move the npc one tile toward the player position
-  def move_toward(player_x, player_y)
+  # move the npc one tile toward the player position checking for walls
+  # only move if the player is within 6 tiles
+  def move_toward(player_x, player_y, map)
     dx = player_x - @x
     dy = player_y - @y
+
+    # check if player is within detection range
+    if dx.abs + dy.abs > 6
+      return
+    end
+
     if dx.abs > dy.abs
       if dx > 0
-        @x += 1
+        @x += 1 if map.detect_collision(@x + 1, @y)
       else
-        @x -= 1
+        @x -= 1 if map.detect_collision(@x - 1, @y)
       end
     else
       if dy > 0
-        @y += 1
+        @y += 1 if map.detect_collision(@x, @y + 1)
       else
-        @y -= 1
+        @y -= 1 if map.detect_collision(@x, @y - 1)
       end
     end
   end
