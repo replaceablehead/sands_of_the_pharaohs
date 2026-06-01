@@ -2,12 +2,20 @@
     "activeFile": "",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "level1.tmx#tiles": {
+            "dynamicWrapping": true
+        },
         "tiles.tsx": {
             "dynamicWrapping": false
         }
     },
     "last.exportedFilePath": "C:/Users/repla/sands_of_the_pharaohs/maps",
+    "last.imagePath": "C:/Users/repla/sands_of_the_pharaohs/assets",
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "openFiles": [
     ],
