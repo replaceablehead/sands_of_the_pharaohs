@@ -25,6 +25,15 @@ class Map
   
   end
 
+  # look up the target x and y position in the walls layer data array.
+  # multiply y by the map width and add x to convert tile coordinates to an array index.
+  # return true if the value at that index is zero which means no wall is present
+  def detect_collision(x, y)
+    walls_layer = @layers.find { |l| l['name'] == 'walls' }
+    tile_index = y * @width + x
+    walls_layer['data'][tile_index] == 0
+  end
+
   def draw
     # loop through the tile layers and draw each tile
     @layers.each do |layer|
