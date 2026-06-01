@@ -1,10 +1,14 @@
 require 'minitest/autorun'
-require_relative '../map' # load the map file for testing
+require_relative '../map'
 
-# test tries to create a new map and checks if a new map was created
+class FakeWindow
+  # fake window as stand in for gosu-tiled to run without opening a real window
+end
+
 class MapTest < Minitest::Test
-  def test_map_initializes
-    map = Map.new
-    assert_instance_of Map, map
+  def test_map_loads_correct_dimensions
+    map = Map.new(FakeWindow.new, 'maps/level1.tmj')
+    assert_equal 20, map.width
+    assert_equal 16, map.height
   end
 end

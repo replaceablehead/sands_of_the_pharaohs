@@ -1,0 +1,41 @@
+{
+    "activeFile": "level1.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "C:/Users/repla/sands_of_the_pharaohs/tilesheets/tiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level1.tmx": {
+            "scale": 2.2673828124999997,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 320.1929537427858,
+                "y": 256.02205185631846
+            }
+        },
+        "tiles.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/repla/OneDrive/Desktop/assets/npcs/mummy/rotations",
+    "map.height": 16,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 20,
+    "openFiles": [
+        "C:/Users/repla/sands_of_the_pharaohs/tilesheets/tiles.tsx",
+        "level1.tmx"
+    ],
+    "project": "test_map.tiled-project",
+    "recentFiles": [
+        "C:/Users/repla/sands_of_the_pharaohs/tilesheets/tiles.tsx",
+        "level1.tmx",
+        "tiles.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.type": 1
+}
