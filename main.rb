@@ -15,6 +15,7 @@ class Game < Gosu::Window
     
     # read spawn point from map and convert to tile coordinates
     map_data = JSON.parse(File.read('maps/level1.tmj'))
+    @npcs = DataLoader.load_npcs(map_data)
     spawn = DataLoader.find_object(map_data, 'player_spawn', 'player_spawn')
     spawn_x = (spawn['x'] / 32).floor
     spawn_y = (spawn['y'] / 32).floor
@@ -42,6 +43,7 @@ class Game < Gosu::Window
 
   def draw
     @map.draw
+    @npcs.each { |npc| npc.draw }
     @player.draw
   end
 end

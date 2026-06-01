@@ -1,5 +1,17 @@
+require 'gosu'
+
 class Npc
-  attr_accessor :hp, :str, :dex, :int, :wis, :x, :y, :type
+  attr_accessor :hp, :str, :dex, :int, :wis, :x, :y, :type, :image
+  TILE_SIZE = 32
+
+  def initialize
+    @x = 0
+    @y = 0
+  end
+
+  def draw
+    @image.draw(@x * TILE_SIZE, @y * TILE_SIZE, 1)
+  end
 end
 
 class Rat < Npc
@@ -11,9 +23,7 @@ class Rat < Npc
     @dex = 8
     @int = 1
     @wis = 1
-    # set some place holder coodinates
-    @x = 0
-    @y = 0
+    @image = Gosu::Image.new('assets/npcs/rat/rotations/south.png')
   end
 end
 
@@ -26,9 +36,7 @@ class Mummy < Npc
     @dex = 3
     @int = 2
     @wis = 2
-     # set some place holder coodinates
-    @x = 0
-    @y = 0
+    @image = Gosu::Image.new('assets/npcs/mummy/rotations/south.png')
   end
 end
 
@@ -41,9 +49,7 @@ class AnubisGuardLight < Npc
     @dex = 10
     @int = 5
     @wis = 5
-     # set some place holder coodinates
-    @x = 0
-    @y = 0
+    @image = Gosu::Image.new('assets/npcs/anubis_guard_light/rotations/south.png')
   end
 end
 
@@ -56,9 +62,7 @@ class AnubisGuardDark < Npc
     @dex = 12
     @int = 8
     @wis = 8
-     # set some place holder coodinates
-    @x = 0
-    @y = 0
+    @image = Gosu::Image.new('assets/npcs/anubis_guard_dark/rotations/south.png')
   end
 end
 
@@ -71,8 +75,6 @@ class CobraBoss < Npc
     @dex = 15
     @int = 10
     @wis = 10
-     # set some place holder coodinates
-    @x = 0
-    @y = 0
+    @image = Gosu::Image.new('assets/npcs/cobra_boss/rotations/south.png')
   end
 end
