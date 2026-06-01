@@ -13,24 +13,35 @@ class Character
     @wis = 10
     @x = x
     @y = y
-    @image = Gosu::Image.new('assets/character/rotations/south.png')
+    # load all four direction sprites
+    @images = {
+      north: Gosu::Image.new('assets/character/rotations/north.png'),
+      south: Gosu::Image.new('assets/character/rotations/south.png'),
+      east:  Gosu::Image.new('assets/character/rotations/east.png'),
+      west:  Gosu::Image.new('assets/character/rotations/west.png')
+    }
+    @image = @images[:south]
   end
-  
-  # movement procedures. Increment coordinate according to direction.
+
+  # move the player one tile in the direction pressed
   def move_right
     @x += 1
+    @image = @images[:east]
   end
 
   def move_left
     @x -= 1
+    @image = @images[:west]
   end
 
   def move_up
     @y -= 1
+    @image = @images[:north]
   end
 
   def move_down
     @y += 1
+    @image = @images[:south]
   end
 
   def draw

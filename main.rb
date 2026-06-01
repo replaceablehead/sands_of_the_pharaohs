@@ -26,16 +26,44 @@ class Game < Gosu::Window
   def update
   end
 
-  # handle keyboard input for player movement
+  # handle keyboard input for player movement and combat
   def button_down(id)
     if id == Gosu::KB_RIGHT
-      @player.move_right if @map.detect_collision(@player.x + 1, @player.y)
+      npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x + 1, @player.y)
+      if npc
+        Combat.resolve_attack(@player, npc)
+        @npcs.reject! { |n| Combat.dead?(n) }
+      elsif @map.detect_collision(@player.x + 1, @player.y)
+        @player.move_right
+      end
+      @npcs.each { |npc| npc.move_toward(@player.x, @player.y) }
     elsif id == Gosu::KB_LEFT
-      @player.move_left if @map.detect_collision(@player.x - 1, @player.y)
+      npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x - 1, @player.y)
+      if npc
+        Combat.resolve_attack(@player, npc)
+        @npcs.reject! { |n| Combat.dead?(n) }
+      elsif @map.detect_collision(@player.x - 1, @player.y)
+        @player.move_left
+      end
+      @npcs.each { |npc| npc.move_toward(@player.x, @player.y) }
     elsif id == Gosu::KB_UP
-      @player.move_up if @map.detect_collision(@player.x, @player.y - 1)
+      npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x, @player.y - 1)
+      if npc
+        Combat.resolve_attack(@player, npc)
+        @npcs.reject! { |n| Combat.dead?(n) }
+      elsif @map.detect_collision(@player.x, @player.y - 1)
+        @player.move_up
+      end
+      @npcs.each { |npc| npc.move_toward(@player.x, @player.y) }
     elsif id == Gosu::KB_DOWN
-      @player.move_down if @map.detect_collision(@player.x, @player.y + 1)
+      npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x, @player.y + 1)
+      if npc
+        Combat.resolve_attack(@player, npc)
+        @npcs.reject! { |n| Combat.dead?(n) }
+      elsif @map.detect_collision(@player.x, @player.y + 1)
+        @player.move_down
+      end
+      @npcs.each { |npc| npc.move_toward(@player.x, @player.y) }
     elsif id == Gosu::KB_ESCAPE
       close
     end

@@ -65,4 +65,23 @@ class CombatTest < Minitest::Test
     max_possible_damage = @player.str + 6
     assert @rat.hp >= starting_hp - max_possible_damage
   end
+
+  # test checks if an enemy is found on the target tile
+def test_finds_enemy_on_target_tile
+  npcs = [Rat.new]
+  npcs[0].x = 5
+  npcs[0].y = 5
+  result = Combat.check_for_enemy_on_target_tile(npcs, 5, 5)
+  assert_instance_of Rat, result
+end
+
+# test checks that when no enemy is on the target tile that nil is returned
+def test_no_enemy_on_target_tile
+  npcs = [Rat.new]
+  npcs[0].x = 5
+  npcs[0].y = 5
+  result = Combat.check_for_enemy_on_target_tile(npcs, 6, 5)
+  assert_nil result
+end
+
 end

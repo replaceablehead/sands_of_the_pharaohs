@@ -6,6 +6,12 @@ module Combat
   def self.defence_roll(attacker)
     attacker.dex + rand(1..6)
   end
+
+  # check if there is an enemy on the target tile before attacking
+  def self.check_for_enemy_on_target_tile(npcs, x, y)
+    npcs.find { |npc| npc.x == x && npc.y == y }
+  end
+
   def self.resolve_attack(attacker, defender)
     potential_damage = attack_roll(attacker)
     defence_score = defence_roll(attacker)
@@ -41,6 +47,7 @@ module Combat
       end
     end
   end
+
   def self.apply_damage(defender, damage)
     defender.hp -= damage
     defender.hp = 0 if defender.hp < 0

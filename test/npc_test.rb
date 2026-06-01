@@ -80,4 +80,23 @@ class NpcTest < Minitest::Test
     assert_equal 0, npc.x
     assert_equal 0, npc.y
   end
+
+  # test checks if npc moves toward player
+def test_npc_moves_toward_player_horizontally
+  npc = Rat.new
+  npc.x = 3
+  npc.y = 5
+  npc.move_toward(5, 5)
+  assert_equal 4, npc.x
+  assert_equal 5, npc.y
+end
+
+def test_npc_moves_toward_player_vertically
+  npc = Rat.new
+  npc.x = 5
+  npc.y = 3
+  npc.move_toward(5, 5)
+  assert_equal 5, npc.x
+  assert_equal 4, npc.y
+end
 end
