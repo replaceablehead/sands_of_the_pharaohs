@@ -1,6 +1,5 @@
 class Npc
   attr_accessor :hp, :str, :dex, :int, :wis, :x, :y, :type
-  end
 end
 
 class Rat < Npc
