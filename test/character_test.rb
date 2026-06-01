@@ -24,4 +24,29 @@ class CharacterTest < Minitest::Test
     assert_equal 0, character.x
     assert_equal 0, character.y
   end
+  
+  # test player movement
+  def test_player_moves_right
+  character = Character.new(5, 5)
+  character.move_right
+  assert_equal 6, character.x
+  end
+
+  def test_player_moves_left
+  character = Character.new(5, 5)
+  character.move_left
+  assert_equal 4, character.x
+  end
+
+  def test_player_moves_up
+    character = Character.new(5, 5)
+    character.move_up
+    assert_equal 4, character.y
+  end
+
+  def test_player_moves_down
+    character = Character.new(5, 5)
+    character.move_down
+    assert_equal 6, character.y
+  end
 end

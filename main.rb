@@ -26,4 +26,18 @@ def draw
   @player.draw
 end
 end
+
+# keyboard handling for player movement
+def update
+  if Gosu.button_down?(Gosu::KB_RIGHT)
+    @player.move_right
+  elsif Gosu.button_down?(Gosu::KB_LEFT)
+    @player.move_left
+  elsif Gosu.button_down?(Gosu::KB_UP)
+    @player.move_up
+  elsif Gosu.button_down?(Gosu::KB_DOWN)
+    @player.move_down
+  end
+end
+
 Game.new.show if __FILE__ == $0

@@ -15,6 +15,23 @@ class Character
     @y = y
     @image = Gosu::Image.new('assets/character/rotations/south.png')
   end
+  
+  # movement procedures. Increment coordinate according to direction.
+  def move_right
+    @x += 1
+  end
+
+  def move_left
+    @x -= 1
+  end
+
+  def move_up
+    @y -= 1
+  end
+
+  def move_down
+    @y += 1
+  end
 
   def draw
     @image.draw(@x * TILE_SIZE, @y * TILE_SIZE, 1)
