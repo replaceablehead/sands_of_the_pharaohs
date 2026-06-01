@@ -25,13 +25,16 @@ class Map
   
   end
 
-  # look up the target x and y position in the walls layer data array.
+  # look up the target x and y position in the walls and solid decorations layers.
   # multiply y by the map width and add x to convert tile coordinates to an array index.
-  # return true if the value at that index is zero which means no wall is present
+  # return true if both values at that index are zero meaning the tile is passable
+  # also return false if the target position is outside the map boundaries
   def detect_collision(x, y)
-    walls_layer = @layers.find { |l| l['name'] == 'walls' }
+    return false if x < 0 || x >= @width || y < 0 || y >= @height
     tile_index = y * @width + x
-    walls_layer['data'][tile_index] == 0
+    walls_layer = @layers.find { |l| l['name'] == 'walls' }
+    solid_decorations_layer = @layers.find { |l| l['name'] == 'solid_decorations' }
+    walls_layer['data'][tile_index] == 0 && solid_decorations_layer['data'][tile_index] == 0
   end
 
   def draw
