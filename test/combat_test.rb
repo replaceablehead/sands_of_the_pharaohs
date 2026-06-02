@@ -51,9 +51,9 @@ class CombatTest < Minitest::Test
     refute Combat.dead?(@rat)
   end
 
-  # test resolve attack returns a symbol
-  def test_resolve_attack_returns_valid_outcome
-    result = Combat.resolve_attack(@player, @rat)
+  # test perform attack returns a symbol
+  def test_perform_attack_returns_valid_outcome
+    result = Combat.perform_attack(@player, @rat)
     assert [:hit, :partial, :miss].include?(result)
   end
 
@@ -61,7 +61,7 @@ class CombatTest < Minitest::Test
   # test damage never exceeds maximum ammount
   def test_damage_never_exceeds_maximum
     starting_hp = @rat.hp
-    Combat.resolve_attack(@player, @rat)
+    Combat.perform_attack(@player, @rat)
     max_possible_damage = @player.str + 6
     assert @rat.hp >= starting_hp - max_possible_damage
   end

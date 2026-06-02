@@ -1,5 +1,6 @@
 require 'gosu'
 require_relative 'pathfinding'
+require_relative 'combat'
 
 class Npc
   attr_accessor :hp, :str, :dex, :int, :wis, :x, :y, :type, :image
@@ -9,24 +10,31 @@ class Npc
     @image.draw(@x * TILE_SIZE, @y * TILE_SIZE, 1)
   end
 
+  # attack the player when adjacent instead of moving
+  def attack_player(player)
+    Combat.perform_attack(self, player)
+  end
+
   # move the npc one tile toward the player using bfs pathfinding
   # only move if the player is within 6 tiles
-  # stop one tile away from the player and don't move onto other npcs
-  def move_toward(player_x, player_y, map, npcs)
-    dx = player_x - @x
-    dy = player_y - @y
+  # stop one tile away from the player and attack instead of moving
+  # don't move onto other npcs
+  def move_toward(player, map, npcs)
+    dx = player.x - @x
+    dy = player.y - @y
 
     # check if player is within detection range
     if dx.abs + dy.abs > 6
       return
     end
 
-    # if already adjacent to player stop and attack instead of moving
+    # if already adjacent to player attack instead of moving
     if dx.abs + dy.abs == 1
+      attack_player(player)
       return
     end
 
-    next_step = Pathfinding.find_path(@x, @y, player_x, player_y, map)
+    next_step = Pathfinding.find_path(@x, @y, player.x, player.y, map)
     if next_step
       # check no other npc is already on the target tile
       tile_occupied = false

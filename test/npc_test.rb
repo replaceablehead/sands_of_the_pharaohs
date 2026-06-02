@@ -100,3 +100,15 @@ def test_npc_moves_toward_player_vertically
   assert_equal 4, npc.y
 end
 end
+
+# test that the npc attacks the player when they are adjacent
+def test_npc_attacks_player_when_adjacent
+  npc = Rat.new
+  npc.x = 5
+  npc.y = 5
+  player = Character.new(6, 5)
+  starting_hp = player.hp
+  # run several times to account for combat randomness
+  10.times { npc.attack_player(player) }
+  assert player.hp < starting_hp
+end

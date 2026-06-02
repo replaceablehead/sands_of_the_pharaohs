@@ -12,7 +12,7 @@ module Combat
     npcs.find { |npc| npc.x == x && npc.y == y }
   end
 
-  def self.resolve_attack(attacker, defender)
+  def self.perform_attack(attacker, defender)
     potential_damage = attack_roll(attacker)
     defence_score = defence_roll(attacker)
     hit_chance = rand(100)
