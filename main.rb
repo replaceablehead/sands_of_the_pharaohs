@@ -7,12 +7,14 @@ require_relative 'item'
 require_relative 'combat'
 require_relative 'data_loader'
 require_relative 'input_handler'
+require_relative 'hud'
 
 class Game < Gosu::Window
   def initialize
     super 960, 600
     self.caption = "Sands of the Pharaohs"
     @map = Map.new('maps/level1.tmj')
+    @hud = Hud.new
     
     # read spawn point from map and convert to tile coordinates
     map_data = JSON.parse(File.read('maps/level1.tmj'))
@@ -30,13 +32,14 @@ class Game < Gosu::Window
   # pass keyboard input to the input handler
   def button_down(id)
     close if id == Gosu::KB_ESCAPE
-    InputHandler.handle(id, @player, @npcs, @map)
+    InputHandler.handle(id, @player, @npcs, @map, @hud)
   end
 
   def draw
     @map.draw
     @npcs.each { |npc| npc.draw }
     @player.draw
+    @hud.draw(@player)
   end
 end
 
