@@ -44,6 +44,23 @@ class Character
     @image = @images[:south]
   end
 
+  # turn the player to face a direction without moving
+  def face_right
+    @image = @images[:east]
+  end
+
+  def face_left
+    @image = @images[:west]
+  end
+
+  def face_up
+    @image = @images[:north]
+  end
+
+  def face_down
+    @image = @images[:south]
+  end
+
   def draw
     @image.draw(@x * TILE_SIZE, @y * TILE_SIZE, 1)
   end

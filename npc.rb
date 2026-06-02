@@ -1,4 +1,5 @@
 require 'gosu'
+require_relative 'pathfinding'
 
 class Npc
   attr_accessor :hp, :str, :dex, :int, :wis, :x, :y, :type, :image
@@ -8,9 +9,10 @@ class Npc
     @image.draw(@x * TILE_SIZE, @y * TILE_SIZE, 1)
   end
 
-  # move the npc one tile toward the player position checking for walls
+  # move the npc one tile toward the player using bfs pathfinding
   # only move if the player is within 6 tiles
-  def move_toward(player_x, player_y, map)
+  # stop one tile away from the player and don't move onto other npcs
+  def move_toward(player_x, player_y, map, npcs)
     dx = player_x - @x
     dy = player_y - @y
 
@@ -19,20 +21,27 @@ class Npc
       return
     end
 
-    if dx.abs > dy.abs
-      if dx > 0
-        @x += 1 if map.detect_collision(@x + 1, @y)
-      else
-        @x -= 1 if map.detect_collision(@x - 1, @y)
+    # if already adjacent to player stop and attack instead of moving
+    if dx.abs + dy.abs == 1
+      return
+    end
+
+    next_step = Pathfinding.find_path(@x, @y, player_x, player_y, map)
+    if next_step
+      # check no other npc is already on the target tile
+      tile_occupied = false
+      npcs.each do |other|
+        if other != self && other.x == next_step[0] && other.y == next_step[1]
+          tile_occupied = true
+        end
       end
-    else
-      if dy > 0
-        @y += 1 if map.detect_collision(@x, @y + 1)
-      else
-        @y -= 1 if map.detect_collision(@x, @y - 1)
+      if !tile_occupied
+        @x = next_step[0]
+        @y = next_step[1]
       end
     end
   end
+
 end
 
 class Rat < Npc

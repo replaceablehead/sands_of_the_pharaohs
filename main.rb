@@ -6,6 +6,7 @@ require_relative 'npc'
 require_relative 'item'
 require_relative 'combat'
 require_relative 'data_loader'
+require_relative 'input_handler'
 
 class Game < Gosu::Window
   def initialize
@@ -26,47 +27,10 @@ class Game < Gosu::Window
   def update
   end
 
-  # handle keyboard input for player movement and combat
+  # pass keyboard input to the input handler
   def button_down(id)
-    if id == Gosu::KB_RIGHT
-      npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x + 1, @player.y)
-      if npc
-        Combat.resolve_attack(@player, npc)
-        @npcs.reject! { |n| Combat.dead?(n) }
-      elsif @map.detect_collision(@player.x + 1, @player.y)
-        @player.move_right
-      end
-      @npcs.each { |npc| npc.move_toward(@player.x, @player.y, @map) }
-    elsif id == Gosu::KB_LEFT
-      npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x - 1, @player.y)
-      if npc
-        Combat.resolve_attack(@player, npc)
-        @npcs.reject! { |n| Combat.dead?(n) }
-      elsif @map.detect_collision(@player.x - 1, @player.y)
-        @player.move_left
-      end
-      @npcs.each { |npc| npc.move_toward(@player.x, @player.y, @map) }
-    elsif id == Gosu::KB_UP
-      npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x, @player.y - 1)
-      if npc
-        Combat.resolve_attack(@player, npc)
-        @npcs.reject! { |n| Combat.dead?(n) }
-      elsif @map.detect_collision(@player.x, @player.y - 1)
-        @player.move_up
-      end
-      @npcs.each { |npc| npc.move_toward(@player.x, @player.y, @map) }
-    elsif id == Gosu::KB_DOWN
-      npc = Combat.check_for_enemy_on_target_tile(@npcs, @player.x, @player.y + 1)
-      if npc
-        Combat.resolve_attack(@player, npc)
-        @npcs.reject! { |n| Combat.dead?(n) }
-      elsif @map.detect_collision(@player.x, @player.y + 1)
-        @player.move_down
-      end
-      @npcs.each { |npc| npc.move_toward(@player.x, @player.y, @map) }
-    elsif id == Gosu::KB_ESCAPE
-      close
-    end
+    close if id == Gosu::KB_ESCAPE
+    InputHandler.handle(id, @player, @npcs, @map)
   end
 
   def draw
