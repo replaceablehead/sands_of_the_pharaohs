@@ -64,3 +64,30 @@ end
     character = Character.new
     refute Combat.dead?(character)
   end
+  # test checks player gains xp when killing a rat
+def test_player_gains_xp_on_kill
+  character = Character.new
+  character.gain_xp(10)
+  assert_equal 10, character.current_xp
+end
+
+# test checks player levels up when xp reaches threshold
+def test_player_levels_up_when_xp_threshold_reached
+  character = Character.new
+  character.gain_xp(100)
+  assert_equal 2, character.player_level
+end
+
+# test checks xp resets after levelling up
+def test_xp_resets_after_level_up
+  character = Character.new
+  character.gain_xp(100)
+  assert_equal 0, character.current_xp
+end
+
+# test checks xp to next level increases after levelling up
+def test_xp_to_next_level_increases
+  character = Character.new
+  character.gain_xp(100)
+  assert_equal 200, character.xp_to_next_level
+end

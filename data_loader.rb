@@ -25,6 +25,8 @@ module DataLoader
         npc = AnubisGuardDark.new
       elsif obj['name'] == 'cobra_boss'
         npc = CobraBoss.new
+      elsif obj['name'] == 'dummy'
+        npc = Dummy.new
       end
       if npc
         npc.x = (obj['x'] / 32).floor

@@ -8,6 +8,7 @@ require_relative 'combat'
 require_relative 'data_loader'
 require_relative 'input_handler'
 require_relative 'hud'
+require_relative 'level_up'
 
 class Game < Gosu::Window
   MAX_LEVELS = 5
@@ -18,6 +19,7 @@ class Game < Gosu::Window
     @hud = Hud.new
     @game_over = false
     @game_won = false
+    @level_up_pending = false
     @font = Gosu::Font.new(72)
     @current_level = 1
     load_level(@current_level)
@@ -48,7 +50,7 @@ class Game < Gosu::Window
   def button_down(id)
     close if id == Gosu::KB_ESCAPE
     if !@game_over && !@game_won
-      InputHandler.handle(id, @player, @npcs, @map, @hud)
+      @level_up_pending = InputHandler.handle(id, @player, @npcs, @map, @hud, @level_up_pending)
       if Combat.dead?(@player)
         @game_over = true
         @hud.add_message('you have died. press escape to quit.')
@@ -89,6 +91,12 @@ class Game < Gosu::Window
     @npcs.each { |npc| npc.draw }
     @player.draw
     @hud.draw(@player)
+    if @level_up_pending
+      Gosu.draw_rect(0, 0, 960, 600, Gosu::Color.new(150, 0, 0, 0), 3)
+      @font.draw_text('LEVEL UP!', 320, 200, 4, 1, 1, Gosu::Color::YELLOW)
+      @font.draw_text('S - strength', 290, 280, 4, 0.5, 0.5, Gosu::Color::WHITE)
+      @font.draw_text('D - dexterity', 280, 320, 4, 0.5, 0.5, Gosu::Color::WHITE)
+    end
     if @game_over
       Gosu.draw_rect(0, 0, 960, 600, Gosu::Color.new(200, 0, 0, 0), 3)
       @font.draw_text('GAME OVER', 300, 250, 4, 1, 1, Gosu::Color::RED)

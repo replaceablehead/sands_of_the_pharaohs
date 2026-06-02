@@ -3,7 +3,7 @@ require_relative 'pathfinding'
 require_relative 'combat'
 
 class Npc
-  attr_accessor :hp, :str, :dex, :int, :wis, :x, :y, :type, :image
+  attr_accessor :hp, :str, :dex, :int, :wis, :x, :y, :type, :image, :xp_value
   TILE_SIZE = 32
 
   def draw
@@ -61,6 +61,7 @@ class Rat < Npc
     @wis = 1
     @x = 0
     @y = 0
+    @xp_value = 10
     @image = Gosu::Image.new('assets/npcs/rat/rotations/south.png')
   end
 end
@@ -75,6 +76,7 @@ class Mummy < Npc
     @wis = 2
     @x = 0
     @y = 0
+    @xp_value = 30
     @image = Gosu::Image.new('assets/npcs/mummy/rotations/south.png')
   end
 end
@@ -89,6 +91,7 @@ class AnubisGuardLight < Npc
     @wis = 5
     @x = 0
     @y = 0
+    @xp_value = 50
     @image = Gosu::Image.new('assets/npcs/anubis_guard_light/rotations/south.png')
   end
 end
@@ -103,6 +106,7 @@ class AnubisGuardDark < Npc
     @wis = 8
     @x = 0
     @y = 0
+    @xp_value = 70
     @image = Gosu::Image.new('assets/npcs/anubis_guard_dark/rotations/south.png')
   end
 end
@@ -117,6 +121,27 @@ class CobraBoss < Npc
     @wis = 10
     @x = 0
     @y = 0
+    @xp_value = 200
     @image = Gosu::Image.new('assets/npcs/cobra_boss/rotations/south.png')
+  end
+end
+
+class Dummy < Npc
+  def initialize
+    @type = :dummy
+    @hp = 999
+    @str = 0
+    @dex = 0
+    @int = 0
+    @wis = 0
+    @x = 0
+    @y = 0
+    @xp_value = 5
+    @image = Gosu::Image.new('assets/dummy.png')
+  end
+
+  # dummy never moves
+  def move_toward(player, map, npcs)
+    return
   end
 end

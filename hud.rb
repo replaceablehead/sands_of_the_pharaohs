@@ -25,7 +25,7 @@ class Hud
     end
   end
 
-  # does a find replace of unscore with black space to remove underscores from names
+  # does a find replace of underscore with blank space to remove underscores from names
   def format_npc_name(type)
     type.to_s.gsub('_', ' ')
   end
@@ -33,11 +33,14 @@ class Hud
   # draw the stats panel on the right side of the screen
   def draw_stats(player)
     Gosu.draw_rect(MAP_WIDTH, 0, STATS_PANEL_WIDTH, MAP_HEIGHT, Gosu::Color::BLACK, 3)
-    @font.draw_text('HP: ' + player.hp.to_s, MAP_WIDTH + 10, 20, 3, 1, 1, Gosu::Color::WHITE)
-    @font.draw_text('STR: ' + player.str.to_s, MAP_WIDTH + 10, 50, 3, 1, 1, Gosu::Color::WHITE)
-    @font.draw_text('DEX: ' + player.dex.to_s, MAP_WIDTH + 10, 70, 3, 1, 1, Gosu::Color::WHITE)
-    @font.draw_text('INT: ' + player.int.to_s, MAP_WIDTH + 10, 90, 3, 1, 1, Gosu::Color::WHITE)
-    @font.draw_text('WIS: ' + player.wis.to_s, MAP_WIDTH + 10, 110, 3, 1, 1, Gosu::Color::WHITE)
+    @font.draw_text('LEVEL: ' + player.player_level.to_s, MAP_WIDTH + 10, 20, 3, 1, 1, Gosu::Color::YELLOW)
+    @font.draw_text('XP: ' + player.current_xp.to_s + ' / ' + player.xp_to_next_level.to_s, MAP_WIDTH + 10, 40, 3, 1, 1, Gosu::Color::YELLOW)
+    @font.draw_text('HP: ' + player.hp.to_s, MAP_WIDTH + 10, 70, 3, 1, 1, Gosu::Color::WHITE)
+    @font.draw_text('STR: ' + player.str.to_s, MAP_WIDTH + 10, 100, 3, 1, 1, Gosu::Color::WHITE)
+    @font.draw_text('DEX: ' + player.dex.to_s, MAP_WIDTH + 10, 120, 3, 1, 1, Gosu::Color::WHITE)
+    @font.draw_text('DEF: ' + player.def.to_s, MAP_WIDTH + 10, 140, 3, 1, 1, Gosu::Color::WHITE)
+    @font.draw_text('INT: ' + player.int.to_s, MAP_WIDTH + 10, 160, 3, 1, 1, Gosu::Color::WHITE)
+    @font.draw_text('WIS: ' + player.wis.to_s, MAP_WIDTH + 10, 180, 3, 1, 1, Gosu::Color::WHITE)
   end
 
   # draw the event log at the bottom of the screen
