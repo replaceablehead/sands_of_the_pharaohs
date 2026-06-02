@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require_relative '../character'
+require_relative '../combat'
 
 class CharacterTest < Minitest::Test
   # test tries to create a new character and checks if a charater is created
@@ -50,3 +51,16 @@ class CharacterTest < Minitest::Test
     assert_equal 6, character.y
   end
 end
+
+  # test checks player dies when hp reaches zero
+  def test_player_is_dead_when_hp_zero
+    character = Character.new
+    character.hp = 0
+    assert Combat.dead?(character)
+  end
+
+  # test checks player is still alive when hp is above zero
+  def test_player_is_not_dead_when_hp_above_zero
+    character = Character.new
+    refute Combat.dead?(character)
+  end

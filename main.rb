@@ -15,7 +15,10 @@ class Game < Gosu::Window
     self.caption = "Sands of the Pharaohs"
     @map = Map.new('maps/level1.tmj')
     @hud = Hud.new
-    
+    @hud.add_message('welcome to sands of the pharaohs')
+    @game_over = false
+    @font = Gosu::Font.new(72)
+
     # read spawn point from map and convert to tile coordinates
     map_data = JSON.parse(File.read('maps/level1.tmj'))
     @npcs = DataLoader.load_npcs(map_data)
@@ -32,7 +35,13 @@ class Game < Gosu::Window
   # pass keyboard input to the input handler
   def button_down(id)
     close if id == Gosu::KB_ESCAPE
-    InputHandler.handle(id, @player, @npcs, @map, @hud)
+    if !@game_over
+      InputHandler.handle(id, @player, @npcs, @map, @hud)
+      if Combat.dead?(@player)
+        @game_over = true
+        @hud.add_message('you have died. press escape to quit.')
+      end
+    end
   end
 
   def draw
@@ -40,6 +49,10 @@ class Game < Gosu::Window
     @npcs.each { |npc| npc.draw }
     @player.draw
     @hud.draw(@player)
+    if @game_over
+      Gosu.draw_rect(0, 0, 960, 600, Gosu::Color.new(200, 0, 0, 0), 3)
+      @font.draw_text('GAME OVER', 300, 250, 4, 1, 1, Gosu::Color::RED)
+    end
   end
 end
 
