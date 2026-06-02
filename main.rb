@@ -10,23 +10,35 @@ require_relative 'input_handler'
 require_relative 'hud'
 
 class Game < Gosu::Window
+  MAX_LEVELS = 5
+
   def initialize
     super 960, 600
     self.caption = "Sands of the Pharaohs"
-    @map = Map.new('maps/level1.tmj')
     @hud = Hud.new
-    @hud.add_message('welcome to sands of the pharaohs')
     @game_over = false
+    @game_won = false
     @font = Gosu::Font.new(72)
+    @current_level = 1
+    load_level(@current_level)
+    @hud.add_message('welcome to sands of the pharaohs')
+  end
 
-    # read spawn point from map and convert to tile coordinates
-    map_data = JSON.parse(File.read('maps/level1.tmj'))
+  # load a level by number and set up the map, npcs and player spawn
+  def load_level(level_number)
+    map_file = 'maps/level' + level_number.to_s + '.tmj'
+    @map = Map.new(map_file)
+    map_data = JSON.parse(File.read(map_file))
     @npcs = DataLoader.load_npcs(map_data)
     spawn = DataLoader.find_object(map_data, 'player_spawn', 'player_spawn')
     spawn_x = (spawn['x'] / 32).floor
     spawn_y = (spawn['y'] / 32).floor
-    
-    @player = Character.new(spawn_x, spawn_y)
+    if @player
+      @player.x = spawn_x
+      @player.y = spawn_y
+    else
+      @player = Character.new(spawn_x, spawn_y)
+    end
   end
 
   def update
@@ -35,11 +47,39 @@ class Game < Gosu::Window
   # pass keyboard input to the input handler
   def button_down(id)
     close if id == Gosu::KB_ESCAPE
-    if !@game_over
+    if !@game_over && !@game_won
       InputHandler.handle(id, @player, @npcs, @map, @hud)
       if Combat.dead?(@player)
         @game_over = true
         @hud.add_message('you have died. press escape to quit.')
+      end
+      # check if cobra boss was killed on level 5
+      if @current_level == MAX_LEVELS
+        cobra_still_alive = false
+        @npcs.each do |n|
+          if n.type == :cobra_boss
+            cobra_still_alive = true
+          end
+        end
+        if !cobra_still_alive
+          @game_won = true
+          @hud.add_message('you have slain the cobra boss! you win!')
+        end
+      end
+      if @map.on_down_stairs?(@player.x, @player.y)
+        if @current_level < MAX_LEVELS
+          @current_level += 1
+          @hud.add_message('you descend deeper into the pyramid...')
+          load_level(@current_level)
+        end
+      elsif @map.on_up_stairs?(@player.x, @player.y)
+        if @current_level > 1
+          @current_level -= 1
+          @hud.add_message('you ascend back toward the entrance...')
+          load_level(@current_level)
+        else
+          @hud.add_message('you are already at the top.')
+        end
       end
     end
   end
@@ -52,6 +92,10 @@ class Game < Gosu::Window
     if @game_over
       Gosu.draw_rect(0, 0, 960, 600, Gosu::Color.new(200, 0, 0, 0), 3)
       @font.draw_text('GAME OVER', 300, 250, 4, 1, 1, Gosu::Color::RED)
+    end
+    if @game_won
+      Gosu.draw_rect(0, 0, 960, 600, Gosu::Color.new(200, 0, 0, 0), 3)
+      @font.draw_text('YOU WIN!', 330, 250, 4, 1, 1, Gosu::Color::YELLOW)
     end
   end
 end

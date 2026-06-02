@@ -7,8 +7,105 @@
         "": {
             "scaleInDock": 1
         },
+        "level1 - Copy.tmx": {
+            "scale": 1.29734375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 320.26978200650365,
+                "y": 255.9075033120559
+            }
+        },
+        "level1 - Copy.tmx#tiles": {
+            "scaleInDock": 1
+        },
+        "level1.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 1.29734375,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 315.64494760929784,
+                "y": 230.47091412742384
+            }
+        },
         "level1.tmx#tiles": {
-            "dynamicWrapping": true
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "level2.tmx": {
+            "expandedObjectLayers": [
+                6,
+                7
+            ],
+            "scale": 1.29734375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.26978200650365,
+                "y": 255.9075033120559
+            }
+        },
+        "level2.tmx#tiles": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "level3 - Copy.tmx": {
+            "scale": 1.29734375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.26978200650365,
+                "y": 255.9075033120559
+            }
+        },
+        "level3 - Copy.tmx#tiles": {
+            "scaleInDock": 1
+        },
+        "level3.tmx": {
+            "expandedObjectLayers": [
+                6,
+                7
+            ],
+            "scale": 1.29734375,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 314.10333614356256,
+                "y": 282.1148982295556
+            }
+        },
+        "level3.tmx#tiles": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "level4.tmx": {
+            "expandedObjectLayers": [
+                6,
+                7
+            ],
+            "scale": 1.29734375,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 320.26978200650365,
+                "y": 255.9075033120559
+            }
+        },
+        "level4.tmx#tiles": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "level5.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 1.29734375,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 320.26978200650365,
+                "y": 255.9075033120559
+            }
+        },
+        "level5.tmx#tiles": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
         },
         "tiles.tsx": {
             "dynamicWrapping": false
@@ -16,7 +113,10 @@
     },
     "last.exportedFilePath": "C:/Users/repla/sands_of_the_pharaohs/maps",
     "last.imagePath": "C:/Users/repla/sands_of_the_pharaohs/assets",
+    "map.height": 16,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 20,
     "openFiles": [
     ],
     "project": "untitled.tiled-project",

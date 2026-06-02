@@ -6,7 +6,8 @@ class Map
   attr_reader :width, :height, :layers, :tile_images
 
   TILE_SIZE = 32
-
+  DOWN_STAIRS_ID = 28
+  UP_STAIRS_ID = 27
 
   def initialize(map_file)
     # read in the tmjson file
@@ -22,7 +23,6 @@ class Map
       id = tile['id'] + 1
       @tile_images[id] = Gosu::Image.new(tile['image'].gsub('../', ''))
     end
-  
   end
 
   # look up the target x and y position in the walls and solid decorations layers.
@@ -35,6 +35,25 @@ class Map
     walls_layer = @layers.find { |l| l['name'] == 'walls' }
     solid_decorations_layer = @layers.find { |l| l['name'] == 'solid_decorations' }
     walls_layer['data'][tile_index] == 0 && solid_decorations_layer['data'][tile_index] == 0
+  end
+
+  # check if the player is standing on any stairs tile
+  def on_stairs?(x, y)
+    on_down_stairs?(x, y) or on_up_stairs?(x, y)
+  end
+
+  # check if the player is standing on the down stairs tile
+  def on_down_stairs?(x, y)
+    tile_index = y * @width + x
+    stairs_layer = @layers.find { |l| l['name'] == 'stairs' }
+    stairs_layer['data'][tile_index] == DOWN_STAIRS_ID
+  end
+
+  # check if the player is standing on the up stairs tile
+  def on_up_stairs?(x, y)
+    tile_index = y * @width + x
+    stairs_layer = @layers.find { |l| l['name'] == 'stairs' }
+    stairs_layer['data'][tile_index] == UP_STAIRS_ID
   end
 
   def draw

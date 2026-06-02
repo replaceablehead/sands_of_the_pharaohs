@@ -32,4 +32,16 @@ class MapTest < Minitest::Test
     #puts map.detect_collision(0, 0)
     #puts map.detect_collision(3, 7)
   #end
+  
+  # test checks player is on stairs when standing on a stairs tile
+  def test_player_is_on_stairs
+    map = Map.new('maps/level1.tmj')
+    assert_equal true, map.on_stairs?(18, 14)
+  end
+
+# test checks player is not on stairs when not standing on a stairs tile
+  def test_player_is_not_on_stairs
+    map = Map.new('maps/level1.tmj')
+    assert_equal false, map.on_stairs?(8, 7)
+  end
 end
