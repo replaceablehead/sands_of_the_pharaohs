@@ -30,8 +30,7 @@ class Npc
 
     # if already adjacent to player attack instead of moving
     if dx.abs + dy.abs == 1
-      attack_player(player)
-      return
+      return attack_player(player)
     end
 
     next_step = Pathfinding.find_path(@x, @y, player.x, player.y, map)

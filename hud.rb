@@ -48,7 +48,7 @@ class Hud
     end
   end
 
-  # put together a combat message
+  # put together a combat message for when the player attacks
   def combat_message(npc, result)
     npc_name = format_npc_name(npc.type)
     if result == :hit
@@ -57,6 +57,18 @@ class Hud
       'you hit the ' + npc_name + ' for half damage!'
     else
       'you missed the ' + npc_name + '!'
+    end
+  end
+
+  # put together a combat message for when the npc attacks
+  def npc_attack_message(npc, result)
+    npc_name = format_npc_name(npc.type)
+    if result == :hit
+      'the ' + npc_name + ' hit you for full damage!'
+    elsif result == :partial
+      'the ' + npc_name + ' hit you for half damage!'
+    else
+      'the ' + npc_name + ' missed you!'
     end
   end
 
