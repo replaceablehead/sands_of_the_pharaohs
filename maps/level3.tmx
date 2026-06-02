@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="28">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="29">
  <editorsettings>
   <export target="level3.tmj" format="json"/>
  </editorsettings>
@@ -219,7 +219,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="objects"/>
+ <objectgroup id="5" name="objects">
+  <object id="28" name="bronze_khopesh" x="527.231" y="113.308">
+   <point/>
+  </object>
+ </objectgroup>
  <objectgroup id="6" name="player_spawn">
   <object id="1" name="player_spawn" x="111.424" y="145.574">
    <point/>

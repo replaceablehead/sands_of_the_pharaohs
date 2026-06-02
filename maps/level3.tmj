@@ -195,7 +195,20 @@
          "draworder":"topdown",
          "id":5,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":28,
+                 "name":"bronze_khopesh",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":527.231121281465,
+                 "y":113.308442731543
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -316,7 +329,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":28,
+ "nextobjectid":29,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

@@ -195,7 +195,20 @@
          "draworder":"topdown",
          "id":5,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":22,
+                 "name":"copper_armour",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":239.720582921835,
+                 "y":148.765506443454
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -303,7 +316,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":22,
+ "nextobjectid":23,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

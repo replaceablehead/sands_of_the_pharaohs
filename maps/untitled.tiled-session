@@ -20,10 +20,11 @@
         },
         "level1.tmx": {
             "expandedObjectLayers": [
+                5,
                 7
             ],
             "scale": 1.29734375,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 315.64494760929784,
                 "y": 230.47091412742384
@@ -36,10 +37,11 @@
         "level2.tmx": {
             "expandedObjectLayers": [
                 6,
+                5,
                 7
             ],
             "scale": 1.29734375,
-            "selectedLayer": 0,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 320.26978200650365,
                 "y": 255.9075033120559
@@ -63,10 +65,11 @@
         "level3.tmx": {
             "expandedObjectLayers": [
                 6,
+                5,
                 7
             ],
             "scale": 1.29734375,
-            "selectedLayer": 5,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 314.10333614356256,
                 "y": 282.1148982295556
@@ -79,10 +82,11 @@
         "level4.tmx": {
             "expandedObjectLayers": [
                 6,
+                5,
                 7
             ],
             "scale": 1.29734375,
-            "selectedLayer": 4,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 320.26978200650365,
                 "y": 255.9075033120559
@@ -98,7 +102,7 @@
                 7
             ],
             "scale": 1.29734375,
-            "selectedLayer": 9,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 320.26978200650365,
                 "y": 255.9075033120559

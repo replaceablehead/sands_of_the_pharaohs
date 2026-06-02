@@ -1,101 +1,64 @@
-class Item
-  attr_accessor :x, :y, :name, :str_bonus, :dex_bonus, :heal_amount, :value
-end
-# set up some instances of the items class with some placeholder values
-class CopperKhopesh < Item
-  attr_reader :str_bonus
+# item classes for weapons and armour
 
+class Item
+  attr_accessor :x, :y, :name, :str_bonus, :def_bonus
+end
+
+class CopperKhopesh < Item
   def initialize
     @name = 'Copper Khopesh'
-    @str_bonus = 3
+    @str_bonus = 2
+    @def_bonus = 0
     @x = 0
     @y = 0
   end
 end
 
 class BronzeKhopesh < Item
-  attr_reader :str_bonus
-
   def initialize
     @name = 'Bronze Khopesh'
-    @str_bonus = 6
+    @str_bonus = 4
+    @def_bonus = 0
     @x = 0
     @y = 0
   end
 end
 
 class MeteorSteelKhopesh < Item
-  attr_reader :str_bonus
-
   def initialize
     @name = 'Meteor Steel Khopesh'
-    @str_bonus = 12
+    @str_bonus = 6
+    @def_bonus = 0
     @x = 0
     @y = 0
   end
 end
 
-class Helmet < Item
-  attr_reader :dex_bonus
-
+class CopperArmour < Item
   def initialize
-    @name = 'Helmet'
-    @dex_bonus = 2
+    @name = 'Copper Armour'
+    @str_bonus = 0
+    @def_bonus = 2
     @x = 0
     @y = 0
   end
 end
 
-class Chestplate < Item
-  attr_reader :dex_bonus
-
+class BronzeArmour < Item
   def initialize
-    @name = 'Chestplate'
-    @dex_bonus = 5
+    @name = 'Bronze Armour'
+    @str_bonus = 0
+    @def_bonus = 4
     @x = 0
     @y = 0
   end
 end
 
-class Boots < Item
-  attr_reader :dex_bonus
-
+class MeteorSteelArmour < Item
   def initialize
-    @name = 'Boots'
-    @dex_bonus = 2
-    @x = 0
-    @y = 0
-  end
-end
-
-class Gauntlets < Item
-  attr_reader :str_bonus
-
-  def initialize
-    @name = 'Gauntlets'
-    @str_bonus = 2
-    @x = 0
-    @y = 0
-  end
-end
-
-class HealthPotion < Item
-  attr_reader :heal_amount
-
-  def initialize
-    @name = 'Health Potion'
-    @heal_amount = 30
-    @x = 0
-    @y = 0
-  end
-end
-
-class Gold < Item
-  attr_accessor :value
-
-  def initialize(value = 10)
-    @name = 'Gold'
-    @value = value
+    @name = 'Meteor Steel Armour'
+    @str_bonus = 0
+    @def_bonus = 6
     @x = 0
     @y = 0
   end

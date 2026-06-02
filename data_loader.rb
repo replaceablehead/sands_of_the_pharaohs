@@ -36,4 +36,32 @@ module DataLoader
     end
     npcs
   end
+
+  # read all item placements from the objects layer and create the right item for each one
+  def self.load_items(data)
+    objects_layer = find_layer(data, 'objects')
+    items = []
+    objects_layer['objects'].each do |obj|
+      if obj['name'] == 'copper_khopesh'
+        item = CopperKhopesh.new
+      elsif obj['name'] == 'bronze_khopesh'
+        item = BronzeKhopesh.new
+      elsif obj['name'] == 'meteor_steel_khopesh'
+        item = MeteorSteelKhopesh.new
+      elsif obj['name'] == 'copper_armour'
+        item = CopperArmour.new
+      elsif obj['name'] == 'bronze_armour'
+        item = BronzeArmour.new
+      elsif obj['name'] == 'meteor_steel_armour'
+        item = MeteorSteelArmour.new
+      end
+      if item
+        item.x = (obj['x'] / 32).floor
+        item.y = (obj['y'] / 32).floor
+        items << item
+      end
+    end
+    items
+  end
+
 end

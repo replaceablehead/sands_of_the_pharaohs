@@ -26,12 +26,13 @@ class Game < Gosu::Window
     @hud.add_message('welcome to sands of the pharaohs')
   end
 
-  # load a level by number and set up the map, npcs and player spawn
+  # load a level by number and set up the map, npcs, items and player spawn
   def load_level(level_number)
     map_file = 'maps/level' + level_number.to_s + '.tmj'
     @map = Map.new(map_file)
     map_data = JSON.parse(File.read(map_file))
     @npcs = DataLoader.load_npcs(map_data)
+    @items = DataLoader.load_items(map_data)
     spawn = DataLoader.find_object(map_data, 'player_spawn', 'player_spawn')
     spawn_x = (spawn['x'] / 32).floor
     spawn_y = (spawn['y'] / 32).floor
@@ -43,6 +44,19 @@ class Game < Gosu::Window
     end
   end
 
+  # check if the player is standing on an item and pick it up
+  def check_item_pickup
+    @items.each do |item|
+      if item.x == @player.x && item.y == @player.y
+        @player.str += item.str_bonus
+        @player.def += item.def_bonus
+        @hud.add_message('you picked up ' + item.name + '!')
+        @items.delete(item)
+        break
+      end
+    end
+  end
+
   def update
   end
 
@@ -51,6 +65,7 @@ class Game < Gosu::Window
     close if id == Gosu::KB_ESCAPE
     if !@game_over && !@game_won
       @level_up_pending = InputHandler.handle(id, @player, @npcs, @map, @hud, @level_up_pending)
+      check_item_pickup
       if Combat.dead?(@player)
         @game_over = true
         @hud.add_message('you have died. press escape to quit.')

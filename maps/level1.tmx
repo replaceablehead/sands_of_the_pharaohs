@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="29">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="31">
  <editorsettings>
   <export target="level1.tmj" format="json"/>
  </editorsettings>
@@ -162,7 +162,7 @@
  <layer id="10" name="chests" width="20" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -219,7 +219,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="objects"/>
+ <objectgroup id="5" name="objects">
+  <object id="30" name="copper_khopesh" x="111.767" y="50.1024">
+   <point/>
+  </object>
+ </objectgroup>
  <objectgroup id="6" name="player_spawn">
   <object id="1" name="player_spawn" x="318" y="467">
    <point/>

@@ -195,7 +195,20 @@
          "draworder":"topdown",
          "id":5,
          "name":"objects",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":37,
+                 "name":"bronze_armour",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":625.123449355655,
+                 "y":308.322293147055
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -355,7 +368,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":37,
+ "nextobjectid":38,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",
