@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="38">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="47">
  <editorsettings>
   <export target="level4.tmj" format="json"/>
  </editorsettings>
@@ -124,7 +124,7 @@
 3,9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
 3,3,16,0,3,3,3,3,3,9,16,16,3,3,3,3,3,0,0,3,
 3,0,3,0,3,0,0,0,0,0,0,0,0,0,0,0,3,0,0,3,
-3,0,3,0,3,0,3,3,3,3,3,3,3,3,3,0,3,0,0,3,
+3,0,3,0,3,0,3,3,3,3,3,3,3,3,3,0,3,0,0,0,
 3,0,3,0,3,0,16,0,0,0,0,0,0,0,3,0,3,0,0,3,
 3,0,3,0,16,0,16,0,7,5,6,5,7,0,3,0,3,0,0,16,
 3,0,3,0,16,0,9,0,3,0,0,0,3,0,3,0,3,0,0,9,
@@ -204,7 +204,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -221,6 +221,12 @@
  </layer>
  <objectgroup id="5" name="objects">
   <object id="37" name="bronze_armour" x="625.123" y="308.322">
+   <point/>
+  </object>
+  <object id="38" name="potion" x="591.979" y="20.0409">
+   <point/>
+  </object>
+  <object id="46" name="potion" x="624.353" y="118.704">
    <point/>
   </object>
  </objectgroup>
@@ -248,13 +254,28 @@
   <object id="33" name="anubis_guard_dark" x="561.917" y="340.696">
    <point/>
   </object>
-  <object id="34" name="anubis_guard_dark" x="400.048" y="468.65">
+  <object id="34" name="anubis_guard_dark" x="432.422" y="468.65">
    <point/>
   </object>
   <object id="35" name="mummy" x="175.744" y="222.763">
    <point/>
   </object>
   <object id="36" name="mummy" x="588.125" y="272.094">
+   <point/>
+  </object>
+  <object id="39" name="anubis_guard_dark" x="366.904" y="471.567">
+   <point/>
+  </object>
+  <object id="40" name="anubis_guard_dark" x="399.361" y="470.65">
+   <point/>
+  </object>
+  <object id="42" name="anubis_guard_dark" x="591.208" y="407.756">
+   <point/>
+  </object>
+  <object id="43" name="anubis_guard_dark" x="558.834" y="408.527">
+   <point/>
+  </object>
+  <object id="44" name="anubis_guard_dark" x="559.605" y="438.588">
    <point/>
   </object>
  </objectgroup>

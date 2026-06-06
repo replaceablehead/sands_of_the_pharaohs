@@ -1,4 +1,4 @@
-# handles player level up logic including stat increases
+# handles player level up and stat increases
 module LevelUp
 
   # check if the player has levelled up and prompt for stat choice

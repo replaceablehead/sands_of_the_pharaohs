@@ -1,6 +1,7 @@
 {
-    "activeFile": "",
+    "activeFile": "level3.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -36,15 +37,15 @@
         },
         "level2.tmx": {
             "expandedObjectLayers": [
-                6,
                 5,
+                6,
                 7
             ],
             "scale": 1.29734375,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 320.26978200650365,
-                "y": 255.9075033120559
+                "x": 319.8843791400699,
+                "y": 415.84969288209084
             }
         },
         "level2.tmx#tiles": {
@@ -64,15 +65,15 @@
         },
         "level3.tmx": {
             "expandedObjectLayers": [
-                6,
                 5,
+                6,
                 7
             ],
             "scale": 1.29734375,
-            "selectedLayer": 7,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 314.10333614356256,
-                "y": 282.1148982295556
+                "x": 314.4887390099964,
+                "y": 229.31470552812237
             }
         },
         "level3.tmx#tiles": {
@@ -81,15 +82,15 @@
         },
         "level4.tmx": {
             "expandedObjectLayers": [
-                6,
                 5,
+                6,
                 7
             ],
             "scale": 1.29734375,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 320.26978200650365,
-                "y": 255.9075033120559
+                "x": 417.00590148139224,
+                "y": 149.92171504275564
             }
         },
         "level4.tmx#tiles": {
@@ -113,7 +114,8 @@
             "scaleInDock": 1
         },
         "tiles.tsx": {
-            "dynamicWrapping": false
+            "dynamicWrapping": false,
+            "scaleInDock": 1
         }
     },
     "last.exportedFilePath": "C:/Users/repla/sands_of_the_pharaohs/maps",
@@ -123,8 +125,14 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 20,
     "openFiles": [
+        "level3.tmx",
+        "level4.tmx",
+        "level2.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "level2.tmx",
+        "level4.tmx",
+        "level3.tmx"
     ]
 }

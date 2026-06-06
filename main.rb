@@ -13,8 +13,9 @@ require_relative 'level_up'
 class Game < Gosu::Window
   MAX_LEVELS = 5
 
+  
   def initialize
-    super 960, 600
+    super 800, 600
     self.caption = "Sands of the Pharaohs"
     @hud = Hud.new
     @game_over = false
@@ -24,6 +25,8 @@ class Game < Gosu::Window
     @current_level = 1
     load_level(@current_level)
     @hud.add_message('welcome to sands of the pharaohs')
+    @player_attack_sound = Gosu::Sample.new('sounds/player_attack_sound.wav')
+    @enemy_attack_sound = Gosu::Sample.new('sounds/enemy_attack_sound.wav')
   end
 
   # load a level by number and set up the map, npcs, items and player spawn
@@ -46,25 +49,49 @@ class Game < Gosu::Window
 
   # check if the player is standing on an item and pick it up
   def check_item_pickup
-    @items.each do |item|
+    i = 0
+    while i < @items.length
+      item = @items[i]
       if item.x == @player.x && item.y == @player.y
         @player.str += item.str_bonus
-        @player.def += item.def_bonus
+        @player.defence += item.defence_bonus
+        if item.heal_amount > 0
+          @player.hp += item.heal_amount
+          if @player.hp > @player.max_hp
+            @player.hp = @player.max_hp
+          end
+        end
         @hud.add_message('you picked up ' + item.name + '!')
-        @items.delete(item)
+        @items.delete_at(i)
         break
       end
+      i += 1
     end
   end
 
+  # update player animation and decrement hit timers for player and all npcs
   def update
+    @player.update
+    if @player.hit_timer > 0
+      @player.hit_timer -= 1
+    end
+    i = 0
+    while i < @npcs.length
+      if @npcs[i].hit_timer > 0
+        @npcs[i].hit_timer -= 1
+      end
+      i += 1
+    end
   end
+
 
   # pass keyboard input to the input handler
   def button_down(id)
-    close if id == Gosu::KB_ESCAPE
+    if id == Gosu::KB_ESCAPE
+      close
+    end
     if !@game_over && !@game_won
-      @level_up_pending = InputHandler.handle(id, @player, @npcs, @map, @hud, @level_up_pending)
+      @level_up_pending = InputHandler.handle(id, @player, @npcs, @map, @hud, @level_up_pending, @player_attack_sound, @enemy_attack_sound)
       check_item_pickup
       if Combat.dead?(@player)
         @game_over = true
@@ -73,10 +100,12 @@ class Game < Gosu::Window
       # check if cobra boss was killed on level 5
       if @current_level == MAX_LEVELS
         cobra_still_alive = false
-        @npcs.each do |n|
-          if n.type == :cobra_boss
+        i = 0
+        while i < @npcs.length
+          if @npcs[i].type == 'cobra_boss'
             cobra_still_alive = true
           end
+          i += 1
         end
         if !cobra_still_alive
           @game_won = true
@@ -103,22 +132,26 @@ class Game < Gosu::Window
 
   def draw
     @map.draw
-    @npcs.each { |npc| npc.draw }
+    i = 0
+    while i < @npcs.length
+      @npcs[i].draw
+      i += 1
+    end
     @player.draw
     @hud.draw(@player)
     if @level_up_pending
       Gosu.draw_rect(0, 0, 960, 600, Gosu::Color.new(150, 0, 0, 0), 3)
-      @font.draw_text('LEVEL UP!', 320, 200, 4, 1, 1, Gosu::Color::YELLOW)
-      @font.draw_text('S - strength', 290, 280, 4, 0.5, 0.5, Gosu::Color::WHITE)
-      @font.draw_text('D - dexterity', 280, 320, 4, 0.5, 0.5, Gosu::Color::WHITE)
+      @font.draw_text('LEVEL UP', 175, 200, 4, 1, 1, Gosu::Color::YELLOW)
+      @font.draw_text('S - strength', 240, 280, 4, 0.5, 0.5, Gosu::Color::WHITE)
+      @font.draw_text('D - dexterity', 240, 320, 4, 0.5, 0.5, Gosu::Color::WHITE)
     end
     if @game_over
       Gosu.draw_rect(0, 0, 960, 600, Gosu::Color.new(200, 0, 0, 0), 3)
-      @font.draw_text('GAME OVER', 300, 250, 4, 1, 1, Gosu::Color::RED)
+      @font.draw_text('GAME OVER', 130, 250, 4, 1, 1, Gosu::Color::RED)
     end
-    if @game_won
+     if @game_won
       Gosu.draw_rect(0, 0, 960, 600, Gosu::Color.new(200, 0, 0, 0), 3)
-      @font.draw_text('YOU WIN!', 330, 250, 4, 1, 1, Gosu::Color::YELLOW)
+      @font.draw_text('YOU WIN!', 175, 250, 4, 1, 1, Gosu::Color::YELLOW)
     end
   end
 end

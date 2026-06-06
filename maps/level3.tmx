@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="29">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="32">
  <editorsettings>
   <export target="level3.tmj" format="json"/>
  </editorsettings>
@@ -246,6 +246,15 @@
    <point/>
   </object>
   <object id="27" name="anubis_guard_light" x="460.171" y="369.216">
+   <point/>
+  </object>
+  <object id="29" name="anubis_guard_light" x="430.11" y="370.758">
+   <point/>
+  </object>
+  <object id="30" name="mummy" x="334.53" y="375.382">
+   <point/>
+  </object>
+  <object id="31" name="rat" x="203.493" y="150.307">
    <point/>
   </object>
  </objectgroup>

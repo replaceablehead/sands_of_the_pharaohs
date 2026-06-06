@@ -206,8 +206,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":527.231121281465,
-                 "y":113.308442731543
+                 "x":527.231,
+                 "y":113.308
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -230,8 +230,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":111.42356678309,
-                 "y":145.574009394195
+                 "x":111.424,
+                 "y":145.574
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -254,8 +254,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":174.202095628086,
-                 "y":178.056124292424
+                 "x":174.202,
+                 "y":178.056
                 }, 
                 {
                  "height":0,
@@ -267,8 +267,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":461.712633987715,
-                 "y":120.245694327352
+                 "x":461.713,
+                 "y":120.246
                 }, 
                 {
                  "height":0,
@@ -280,8 +280,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":493.315669035288,
-                 "y":151.077923642057
+                 "x":493.316,
+                 "y":151.078
                 }, 
                 {
                  "height":0,
@@ -293,8 +293,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":525.689509815729,
-                 "y":187.305793086836
+                 "x":525.69,
+                 "y":187.306
                 }, 
                 {
                  "height":0,
@@ -306,8 +306,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":301.385041551247,
-                 "y":375.38239190654
+                 "x":301.385,
+                 "y":375.382
                 }, 
                 {
                  "height":0,
@@ -319,8 +319,47 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":460.17102252198,
-                 "y":369.215946043599
+                 "x":460.171,
+                 "y":369.216
+                }, 
+                {
+                 "height":0,
+                 "id":29,
+                 "name":"anubis_guard_light",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":430.109598940142,
+                 "y":370.757557509334
+                }, 
+                {
+                 "height":0,
+                 "id":30,
+                 "name":"mummy",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":334.529688064555,
+                 "y":375.38239190654
+                }, 
+                {
+                 "height":0,
+                 "id":31,
+                 "name":"rat",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":203.492713477056,
+                 "y":150.307117909189
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -329,7 +368,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":29,
+ "nextobjectid":32,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

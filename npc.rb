@@ -3,11 +3,16 @@ require_relative 'pathfinding'
 require_relative 'combat'
 
 class Npc
-  attr_accessor :hp, :str, :dex, :int, :wis, :x, :y, :type, :image, :xp_value
+  attr_accessor :hp, :str, :dex, :int, :wis, :x, :y, :type, :image, :xp_value, :defence, :hit_timer
   TILE_SIZE = 32
 
+  # draw the npc with a red tint if they have just been hit
   def draw
-    @image.draw(@x * TILE_SIZE, @y * TILE_SIZE, 1)
+    if @hit_timer > 0
+      @image.draw(@x * TILE_SIZE, @y * TILE_SIZE, 1, 1, 1, Gosu::Color::RED)
+    else
+      @image.draw(@x * TILE_SIZE, @y * TILE_SIZE, 1)
+    end
   end
 
   # attack the player when adjacent instead of moving
@@ -33,14 +38,17 @@ class Npc
       return attack_player(player)
     end
 
-    next_step = Pathfinding.find_path(@x, @y, player.x, player.y, map)
+    next_step = Pathfinding.calculate_path_to_target(@x, @y, player.x, player.y, map)
     if next_step
       # check no other npc is already on the target tile
       tile_occupied = false
-      npcs.each do |other|
+      i = 0
+      while i < npcs.length
+        other = npcs[i]
         if other != self && other.x == next_step[0] && other.y == next_step[1]
           tile_occupied = true
         end
+        i += 1
       end
       if !tile_occupied
         @x = next_step[0]
@@ -53,95 +61,106 @@ end
 
 class Rat < Npc
   def initialize
-    @type = :rat
-    @hp = 10
-    @str = 3
+    @type = 'rat'
+    @hp = 14
+    @str = 4
     @dex = 8
     @int = 1
     @wis = 1
+    @defence = 2
     @x = 0
     @y = 0
     @xp_value = 10
+    @hit_timer = 0
     @image = Gosu::Image.new('assets/npcs/rat/rotations/south.png')
   end
 end
 
 class Mummy < Npc
   def initialize
-    @type = :mummy
+    @type = 'mummy'
     @hp = 30
     @str = 8
     @dex = 3
     @int = 2
     @wis = 2
+    @defence = 5
     @x = 0
     @y = 0
     @xp_value = 30
+    @hit_timer = 0
     @image = Gosu::Image.new('assets/npcs/mummy/rotations/south.png')
   end
 end
 
 class AnubisGuardLight < Npc
   def initialize
-    @type = :anubis_guard_light
+    @type = 'anubis_guard_light'
     @hp = 50
     @str = 12
     @dex = 10
     @int = 5
     @wis = 5
+    @defence = 8
     @x = 0
     @y = 0
     @xp_value = 50
+    @hit_timer = 0
     @image = Gosu::Image.new('assets/npcs/anubis_guard_light/rotations/south.png')
   end
 end
 
 class AnubisGuardDark < Npc
   def initialize
-    @type = :anubis_guard_dark
+    @type = 'anubis_guard_dark'
     @hp = 70
     @str = 15
     @dex = 12
     @int = 8
     @wis = 8
+    @defence = 10
     @x = 0
     @y = 0
     @xp_value = 70
+    @hit_timer = 0
     @image = Gosu::Image.new('assets/npcs/anubis_guard_dark/rotations/south.png')
   end
 end
 
 class CobraBoss < Npc
   def initialize
-    @type = :cobra_boss
-    @hp = 150
-    @str = 20
-    @dex = 15
+    @type = 'cobra_boss'
+    @hp = 350
+    @str = 25
+    @dex = 17
     @int = 10
     @wis = 10
+    @defence = 20
     @x = 0
     @y = 0
     @xp_value = 200
+    @hit_timer = 0
     @image = Gosu::Image.new('assets/npcs/cobra_boss/rotations/south.png')
   end
 end
 
 class Dummy < Npc
   def initialize
-    @type = :dummy
+    @type = 'dummy'
     @hp = 999
     @str = 0
     @dex = 0
     @int = 0
     @wis = 0
+    @defence = 999
     @x = 0
     @y = 0
     @xp_value = 5
+    @hit_timer = 0
     @image = Gosu::Image.new('assets/dummy.png')
   end
 
   # dummy never moves
   def move_toward(player, map, npcs)
-    return
   end
 end

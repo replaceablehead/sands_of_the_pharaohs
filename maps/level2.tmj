@@ -206,8 +206,21 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":239.720582921835,
-                 "y":148.765506443454
+                 "x":239.721,
+                 "y":148.766
+                }, 
+                {
+                 "height":0,
+                 "id":23,
+                 "name":"potion",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":400.048175358304,
+                 "y":500.252920631097
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -230,7 +243,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":304.125496808382,
+                 "x":304.125,
                  "y":467
                 }],
          "opacity":1,
@@ -280,8 +293,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":304.468264482717,
-                 "y":147.994700710587
+                 "x":304.468,
+                 "y":147.995
                 }, 
                 {
                  "height":0,
@@ -293,8 +306,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":398.506563892569,
-                 "y":49.3315669035289
+                 "x":398.507,
+                 "y":49.3316
                 }, 
                 {
                  "height":0,
@@ -306,8 +319,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":400.048175358304,
-                 "y":470.191497049259
+                 "x":400.048,
+                 "y":470.191
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -316,7 +329,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":23,
+ "nextobjectid":24,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

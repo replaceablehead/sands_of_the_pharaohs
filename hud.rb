@@ -25,7 +25,8 @@ class Hud
     end
   end
 
-  # does a find replace of underscore with blank space to remove underscores from names
+  # replace underscores with spaces to make npc names readable
+  # gsub is a built in ruby string method that does a find and replace
   def format_npc_name(type)
     type.to_s.gsub('_', ' ')
   end
@@ -35,10 +36,10 @@ class Hud
     Gosu.draw_rect(MAP_WIDTH, 0, STATS_PANEL_WIDTH, MAP_HEIGHT, Gosu::Color::BLACK, 3)
     @font.draw_text('LEVEL: ' + player.player_level.to_s, MAP_WIDTH + 10, 20, 3, 1, 1, Gosu::Color::YELLOW)
     @font.draw_text('XP: ' + player.current_xp.to_s + ' / ' + player.xp_to_next_level.to_s, MAP_WIDTH + 10, 40, 3, 1, 1, Gosu::Color::YELLOW)
-    @font.draw_text('HP: ' + player.hp.to_s, MAP_WIDTH + 10, 70, 3, 1, 1, Gosu::Color::WHITE)
+    @font.draw_text('HP: ' + player.hp.to_s + ' / ' + player.max_hp.to_s, MAP_WIDTH + 10, 70, 3, 1, 1, Gosu::Color::WHITE)
     @font.draw_text('STR: ' + player.str.to_s, MAP_WIDTH + 10, 100, 3, 1, 1, Gosu::Color::WHITE)
     @font.draw_text('DEX: ' + player.dex.to_s, MAP_WIDTH + 10, 120, 3, 1, 1, Gosu::Color::WHITE)
-    @font.draw_text('DEF: ' + player.def.to_s, MAP_WIDTH + 10, 140, 3, 1, 1, Gosu::Color::WHITE)
+    @font.draw_text('DEF: ' + player.defence.to_s, MAP_WIDTH + 10, 140, 3, 1, 1, Gosu::Color::WHITE)
     @font.draw_text('INT: ' + player.int.to_s, MAP_WIDTH + 10, 160, 3, 1, 1, Gosu::Color::WHITE)
     @font.draw_text('WIS: ' + player.wis.to_s, MAP_WIDTH + 10, 180, 3, 1, 1, Gosu::Color::WHITE)
   end
@@ -46,17 +47,19 @@ class Hud
   # draw the event log at the bottom of the screen
   def draw_event_log
     Gosu.draw_rect(0, MAP_HEIGHT, WINDOW_WIDTH, LOG_PANEL_HEIGHT, Gosu::Color::BLACK, 3)
-    @event_log.each_with_index do |message, index|
-      @font.draw_text(message, 10, MAP_HEIGHT + 10 + (index * 16), 3, 1, 1, Gosu::Color::WHITE)
+    i = 0
+    while i < @event_log.length
+      @font.draw_text(@event_log[i], 10, MAP_HEIGHT + 10 + (i * 16), 3, 1, 1, Gosu::Color::WHITE)
+      i += 1
     end
-  end
+   end
 
   # put together a combat message for when the player attacks
   def combat_message(npc, result)
     npc_name = format_npc_name(npc.type)
-    if result == :hit
+    if result == 'hit'
       'you hit the ' + npc_name + ' for full damage!'
-    elsif result == :partial
+    elsif result == 'partial'
       'you hit the ' + npc_name + ' for half damage!'
     else
       'you missed the ' + npc_name + '!'
@@ -66,9 +69,9 @@ class Hud
   # put together a combat message for when the npc attacks
   def npc_attack_message(npc, result)
     npc_name = format_npc_name(npc.type)
-    if result == :hit
+    if result == 'hit'
       'the ' + npc_name + ' hit you for full damage!'
-    elsif result == :partial
+    elsif result == 'partial'
       'the ' + npc_name + ' hit you for half damage!'
     else
       'the ' + npc_name + ' missed you!'
